@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>𝓓𝓻: 𝓞𝓶𝓪𝓻 𝓜 𝓖𝓪𝓵𝓪𝓵 - Madar X</title>
+    <link rel="icon" href="https://surveyheartmedia.s3.ap-south-1.amazonaws.com/files/cd0c33b0594e4433d1a8ca61f11ef7/69622f7e459753fa3e3859ce/sh_1777336104206.jpeg" type="image/png">
+    <style>
+        :root {
+            --bg-body: #f4f7f6;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+            --footer-bg: #2d3436;
+            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+            --accent-glow: #00b894;
+        }
+
+        .dark-mode {
+            --bg-body: #0f0f0f;
+            --bg-card: rgba(26, 26, 26, 0.9);
+            --text-main: #f5f5f5;
+            --text-sub: #b2bec3;
+            --footer-bg: #000000;
+            --shadow: 0 10px 30px rgba(0,0,0,0.5);
+            --accent-glow: #00cec9;
+        }
+
+        body {
+            background-image: url('https://surveyheartmedia.s3.ap-south-1.amazonaws.com/files/cd0c33b0594e4433d1a8ca61f11ef7/69622f7e459753fa3e3859ce/sh_1777336104608.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        /* Full-screen glass overlay */
+        .glass-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.12);
+            -webkit-backdrop-filter: blur(10px) saturate(120%);
+            backdrop-filter: blur(10px) saturate(120%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Put page content above the overlay */
+        .content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-id {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 10px;
+            opacity: 0.7;
+            letter-spacing: 1px;
+            background: var(--bg-card);
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+        .toggle-wrapper {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc; transition: .4s; border-radius: 20px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 14px; width: 14px;
+            left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--accent-glow); }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        .header-container {
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @keyframes blink-glow {
+            0% { box-shadow: 0 0 10px var(--accent-glow); }
+            50% { box-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+            100% { box-shadow: 0 0 10px var(--accent-glow); }
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--bg-card);
+            background: #fff;
+            animation: blink-glow 2s infinite ease-in-out;
+            backdrop-filter: blur(5px);
+        }
+
+        .profile-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        
+        .info-card {
+            text-align: center;
+            margin-top: 15px;
+            
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .info-card h1 { margin: 0; font-size: 22px; font-weight: 700; color: #000; }
+        .info-card p { margin: 5px 0; font-size: 16px; color: #000; font-weight: 600; letter-spacing: 1px; }
+
+        .container {
+            width: 85%;
+            max-width: 380px;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .slide {
+            display: flex;
+            align-items: center;
+            padding: 12px 18px;
+            
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            border-right: 5px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .slide:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+        .icon { width: 24px; height: 24px; margin-left: 15px; }
+
+        .fb { border-right-color: #1877f2; }
+        .ig { border-right-color: #e1306c; }
+        .wa { border-right-color: #25d366; }
+        .tk { border-right-color: #000000; }
+        .ln { border-right-color: #0077b5; }
+
+        footer {
+            margin-top: auto;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #fff;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+        }
+        footer a { color: #fff; text-decoration: none; font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <div class="glass-overlay"></div>
+    <main class="content">
+
+    <div class="toggle-wrapper">
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="header-container">
+        <div class="profile-img">
+            <img src="https://surveyheartmedia.s3.ap-south-1.amazonaws.com/files/cd0c33b0594e4433d1a8ca61f11ef7/69622f7e459753fa3e3859ce/sh_1777336104206.jpeg" alt="𝓓𝓻: 𝓞𝓶𝓪𝓻 𝓜 𝓖𝓪𝓵𝓪𝓵">
+        </div>
+    </div>
+
+    <div class="info-card">
+        <h1>𝓓𝓻: 𝓞𝓶𝓪𝓻 𝓜 𝓖𝓪𝓵𝓪𝓵</h1>
+        <p>Pharmacist</p>
+    </div>
+
+    <div class="container">
+        <a href="https://www.facebook.com/dr.omar.m.galal?mibextid=ZbWKwL" class="slide fb" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" class="icon">
+            فيسبوك - Facebook
+        </a>
+        
+        <a href="https://www.instagram.com/dr.omar.m.galal?igsh=MTM3MGc4cm1oeTNiYQ==" class="slide ig" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="icon">
+            انستجرام - Instagram
+        </a>
+
+        <a href="https://wa.me/201005739082" class="slide wa" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="icon">
+            واتساب - WhatsApp
+        </a>
+
+        <a href="https://www.tiktok.com/@dr.omar.m.galal?_r=1&_t=ZS-95ty2SVnxyu" class="slide tk" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" class="icon">
+            تيك توك - TikTok
+        </a>
+
+        <a href="https://www.linkedin.com/in/omar-m-galal" class="slide ln" target="_blank">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJkAAACUCAMAAAC3HHtWAAAAkFBMVEULZsP///////4LZcQAYMEAVLvm7vS0xuQaY8P5/f6/0ulxls8AV78AXsAAWr+TsNl8n9BLgcKcuNtIeMULX7nH1uhCeMFXhMXS3+4AWLjp9fmnu9ySrNKEoNJ3mM3b6PJfi8owbb5Jf8Uycb5hj8aFpM0hZbqpv9uUsNEAUL1tkM2ux99Cc8VliMoASbSJp9V7sCdPAAAGDklEQVR4nO2cDXeiOhCG8wU1apBaQEBb/Gi13bbX///vboJCE0AhexrCvYfXPd3dUvTpTMhkkkkAHKqAbYCbaiejZvSXZAghiCBMw/Xm+WVmQi/Pm3WYQvEp/LO6kiEBRrNFxDBhXMSA8vcNomVGdcj4L5KetomHuYAxibcm82R7uuHYOpmw13LHiPwO+FclvTHAhHydUG6NdjI43TsGbVWzHXYewwa0OhndENIjmBAh7/XmViNzo3m/WELY27v3vYlg9sT6B+Oqo1VsFiek/V3MoAWZ6lCVzD3YsZgQi1zlMZDIEEqPtiwmRHZpsze5KV88i2AAzP1b7WxpF4w79NRAxiO4G/TcjdWEg/TnIQClK+GrzUZ2kfdSsxknC02G727CAMd1MvTHdisTYn7VmxBmjm2qXElWI3sbgsl4z/FeJaM720y5MD7QCtkA2n8uDOIK2cJewFSE2foa2K9kdGa/M7uIvSAok7m7oZCRyFW86Sa2iQrhwFVsFn/YJirlZApZOIx+VsiJlSfgs0taYjQxLuWESjt7aCfjWJj0AOdMNckwC47RKjpOTCejnAzpkJHAD0XcoLFvOFmQbYbayPCEHMPL8ESMfXdG44UWWd79Xcn4X/TVJJoeWdHHXBNCajJj0CJjS6gqNGg0HTL85VbmkOjWHJoOGfMrU0gIPjBj/tQhm59gRSgbhs1EvFC9iai5/laLLIYVIRqYAtMjm9amKlNzcUCHzHuvTe+G5nJADTJMtqhqs80wnk2MQ8lo4l/uwVwQ0IoBZCu7kyK48cAgbAbAx/sPmJg2csyBaZJhspYa2dQYlT4Z//nX+DrhkPlm8yxdMsDAbB1m4cnfGZ400iUT6QljRLyA2SxF22YAGGz1sv6GrB/9T8iweKmrupJna4u9PZIBBQWD8n+4BC8YS1rxZZLzTq7wZsiYLMJwiVS9UN7g8VdwkceIxrSDHtlhs1C0ug62yV79/mJ3AfCCP8vQpTCvGKFuuNweO/eCehH9UR0DwcX1c5hfuRAJv5OPt7gyaqLZOemYOmiSoby8pJBEhpQr8In3w8xP6zUOCFK/W+6gTXbDZsqQUpCR4PNSUaPmgeJ7005L4abIvEMGG5STwfTQAc0Q2dcurnuyvIrSXbtDTdmslgDKdkMwa5+rMUIGaXgPTPx5aH1CzZB1UOvcmyUyBN2kJRpYI0N+SzQwTIakrxWFLSNQa+0M0ifLZLerP8/3nwFTZJewlC1n39/f/rSRbNoyW23KZiKFf/zHI5gQ5gTrWi0e723v56vGbAbRO/OK0S7xZrRm1PT+uqCZ6MS56Gx+KfoEQAyz2SutGo1aIBNob5XPnS+qRrVBxmP2lFS6eJyowyJLZBDxDKHSXbG3QZA1VBeRJ3UFxko74wlCw/sksTL0tvMEwG3DcNpRO1xLNmuKid5audeSzRrJ1DXIkey/Tma91xjJRrKRbCQbyUaykWwkG8lGspFsJBs62dwsGaqsvOIrmbhZXnm9RSbd/btkqslur1Z3yIQh/EUyvHt+9iWd99cpH7w/y1eezw3rlxivzurd3dcDYIf6M1W49YJ6t3SqA2Mti3Xaeyp600imrwrZdED7na4lssUesQGRxYrNMm8g+zcBSFxlj5h7tA1UCB9UMroazC7JLVW8Cc/D2MDMY1mxglaQnQZjs2mFbDANrTzKotjD37guY0HkFVbJxN7SAXQcTlntV+7hp099n8XTJLKnNTJ4YgMwGnsoecqTPxCNiHUy/GMy+bSUAUR1R9rwIp99M7Pd24q0ooEMwaxDFaJJkYMLf/YvSWQUhm1VayaFMYths804rcVzefDEU7c8yucFcdy1LTRM5p/3zqXi2beNB1QUe4vZj3tkCE4TG7GABLV618opY6J67OD1jYa9KGw/Mw5B+gL6HXewo18rQW8gEwpXDsG9hCqxjcrZNtZ6N5JBGu6xZ9pwOO/DwCqmjeWtjWTiB+PFPnHyDWFmJEoNnWS1iGFxFmgnm10Ml5386BhMzCg4Rv6nSwtDdPWmpNQ1o9bDVu+TNf82vyR06yzTi+6R/fgfmVALeKs3relfiv+A9q2UK7EAAAAASUVORK5CYII=" class="icon">
+            لينكدإن - LinkedIn
+        </a>
+
+    </div>
+
+    <footer>
+        By <a href="https://madar-x.com" target="_blank">Madar X</a>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</script>
+
+    </main>
+
+</body>
+</html>
